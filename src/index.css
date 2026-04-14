@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { box-sizing: border-box; }
+html { background: #edf7f1; }
+body {
+  background:
+    radial-gradient(circle at top left, rgba(34, 197, 94, 0.14), transparent 28%),
+    radial-gradient(circle at top right, rgba(16, 185, 129, 0.08), transparent 24%),
+    linear-gradient(180deg, #f9fdfb 0%, #edf7f1 52%, #e5f2ea 100%);
+  color: #163126;
+  font-family: 'Syne', sans-serif;
+  margin: 0;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #dbece1; }
+::-webkit-scrollbar-thumb { background: #22c55e55; border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: #22c55e; }
+
+.prose-chat { line-height: 1.7; font-size: 0.92rem; }
+.prose-chat code { font-family: 'JetBrains Mono', monospace; background: #e6f3ea; border: 1px solid #c7dece; padding: 0.1rem 0.4rem; border-radius: 4px; font-size: 0.82rem; color: #15803d; }
+.prose-chat pre { background: #f5fbf7; border: 1px solid #d6e7dc; border-radius: 10px; padding: 1rem 1.2rem; overflow-x: auto; margin: 0.8rem 0; }
+.prose-chat pre code { background: none; border: none; padding: 0; color: #166534; }
+.prose-chat p { margin: 0.5rem 0; }
+.prose-chat ul, .prose-chat ol { padding-left: 1.4rem; margin: 0.5rem 0; }
+.prose-chat li { margin: 0.25rem 0; }
+.prose-chat h1,.prose-chat h2,.prose-chat h3 { color: #16a34a; margin: 0.8rem 0 0.4rem; font-weight: 700; }
+
+.dot-typing span { display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #22c55e; margin: 0 2px; animation: bounce 1.4s infinite ease-in-out both; }
+.dot-typing span:nth-child(1) { animation-delay: -0.32s; }
+.dot-typing span:nth-child(2) { animation-delay: -0.16s; }
+
+@keyframes bounce { 0%, 80%, 100% { transform: scale(0); opacity: 0.4; } 40% { transform: scale(1); opacity: 1; } }
+
+.glow-border { box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.16), 0 10px 30px rgba(22, 163, 74, 0.08); }
+.glow-border:focus-within { box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.38), 0 12px 34px rgba(34, 197, 94, 0.14); }
