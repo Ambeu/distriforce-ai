@@ -34,15 +34,15 @@ export default function ChatInput({ onSubmit, isLoading, isEmpty }) {
   };
 
   return (
-    <div className="px-4 pb-4 pt-2">
-      {/* Quick suggestions on empty chat */}
+    <div className="px-3 md:px-4 pb-3 md:pb-4 pt-2">
+      {/* Quick suggestions — scroll horizontal sur mobile, wrap sur desktop */}
       {isEmpty && (
-        <div className="flex flex-wrap gap-2 mb-3 justify-center">
+        <div className="flex gap-2 mb-3 overflow-x-auto pb-1 md:flex-wrap md:justify-center md:overflow-x-visible md:pb-0 scrollbar-none">
           {SUGGESTIONS.map((s, i) => (
             <button
               key={i}
               onClick={() => { setValue(s); textareaRef.current?.focus(); }}
-              className="text-xs px-3 py-1.5 rounded-xl bg-dark-700 border border-dark-600 text-slate-700 hover:border-brand-500 hover:text-brand-700 transition-all"
+              className="text-xs px-3 py-1.5 rounded-xl bg-dark-700 border border-dark-600 text-slate-700 hover:border-brand-500 hover:text-brand-700 transition-all whitespace-nowrap flex-shrink-0"
             >
               {s}
             </button>
@@ -51,7 +51,7 @@ export default function ChatInput({ onSubmit, isLoading, isEmpty }) {
       )}
 
       {/* Input area */}
-      <div className="glow-border bg-dark-800 border border-dark-600 rounded-2xl flex items-end gap-2 p-3 transition-all">
+      <div className="glow-border bg-dark-800 border border-dark-600 rounded-2xl flex items-end gap-2 p-2.5 md:p-3 transition-all">
         <textarea
           ref={textareaRef}
           value={value}
@@ -74,7 +74,7 @@ export default function ChatInput({ onSubmit, isLoading, isEmpty }) {
         </button>
       </div>
 
-      <p className="text-center text-[10px] text-slate-500 mt-2">
+      <p className="text-center text-[10px] text-slate-500 mt-2 hidden md:block">
         Entrée pour envoyer · Maj+Entrée pour nouvelle ligne
       </p>
     </div>

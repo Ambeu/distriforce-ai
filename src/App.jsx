@@ -12,10 +12,12 @@ export default function App() {
 
   const [isLoading, setIsLoading] = useState(false);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [sidebarOpen, setSidebarOpen] = useState(false); // mobile drawer
 
   const handleNewChat = () => {
     const id = createChat();
     setActiveChatId(id);
+    setSidebarOpen(false);
   };
 
   const handleSend = async (question) => {
@@ -42,18 +44,34 @@ export default function App() {
 
   return (
     <div className="flex h-screen overflow-hidden bg-dark-900 text-slate-900">
+      {/* Mobile backdrop */}
+      {sidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          onClick={() => setSidebarOpen(false)}
+        />
+      )}
+
       <Sidebar
         chats={chats}
         activeChatId={activeChatId}
-        onSelect={setActiveChatId}
+        onSelect={(id) => { setActiveChatId(id); setSidebarOpen(false); }}
         onCreate={handleNewChat}
         onDelete={deleteChat}
         onClearAll={clearAll}
         collapsed={sidebarCollapsed}
         onToggle={() => setSidebarCollapsed(p => !p)}
+        mobileOpen={sidebarOpen}
+        onMobileClose={() => setSidebarOpen(false)}
       />
-      <main className="flex-1 overflow-hidden bg-white/55 backdrop-blur-[2px]">
-        <ChatWindow chat={activeChat} onSend={handleSend} isLoading={isLoading} />
+
+      <main className="flex-1 overflow-hidden bg-white/55 backdrop-blur-[2px] min-w-0">
+        <ChatWindow
+          chat={activeChat}
+          onSend={handleSend}
+          isLoading={isLoading}
+          onMenuClick={() => setSidebarOpen(true)}
+        />
       </main>
     </div>
   );

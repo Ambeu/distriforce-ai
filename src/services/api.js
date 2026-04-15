@@ -1,7 +1,5 @@
-// Toujours utiliser un chemin relatif pour que le proxy serveur gère la requête.
-// En dev : proxy Vite (vite.config.js) → https://notif-whatsapp.distriforce.shop
-// En prod : proxy nginx/apache sur le même domaine → évite tout problème CORS
-const API_URL = import.meta.env.VITE_API_URL || '/api/distriforceai';
+const API_URL =
+  import.meta.env.VITE_API_URL || '/api/distriforceai';
 
 // Fix code blocks that the backend returns without backtick fences
 // e.g.  "php\n$x = 1;\n\n"  →  "```php\n$x = 1;\n```\n\n"

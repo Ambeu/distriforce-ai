@@ -24,19 +24,19 @@ export default function MessageBubble({ message }) {
   const isUser = message.role === 'user';
 
   return (
-    <div className={`group flex gap-3 animate-slide-up ${isUser ? 'flex-row-reverse' : 'flex-row'}`}>
+    <div className={`group flex gap-2 md:gap-3 animate-slide-up ${isUser ? 'flex-row-reverse' : 'flex-row'}`}>
       {/* Avatar */}
-      <div className={`flex-shrink-0 w-8 h-8 rounded-xl flex items-center justify-center text-xs font-bold mt-0.5 ${
+      <div className={`flex-shrink-0 w-7 h-7 md:w-8 md:h-8 rounded-xl flex items-center justify-center text-xs font-bold mt-0.5 ${
         isUser
           ? 'bg-dark-600 text-slate-800'
           : 'bg-brand-500 text-slate-950'
       }`}>
-        {isUser ? <User size={14} /> : <Bot size={14} />}
+        {isUser ? <User size={13} /> : <Bot size={13} />}
       </div>
 
       {/* Bubble */}
-      <div className={`relative max-w-[78%] ${isUser ? 'items-end' : 'items-start'} flex flex-col gap-1`}>
-        <div className={`rounded-2xl px-4 py-3 text-sm ${
+      <div className={`relative max-w-[88%] md:max-w-[78%] ${isUser ? 'items-end' : 'items-start'} flex flex-col gap-1`}>
+        <div className={`rounded-2xl px-3 md:px-4 py-2.5 md:py-3 text-sm ${
           isUser
             ? 'bg-dark-600 text-slate-900 rounded-tr-sm'
             : 'bg-dark-700 border border-dark-600 text-slate-800 rounded-tl-sm'
