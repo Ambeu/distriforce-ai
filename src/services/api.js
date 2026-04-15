@@ -1,5 +1,12 @@
+// Use VITE_API_URL if set, otherwise:
+//   - in dev: use the Vite proxy path (proxied to HTTPS backend in vite.config.js)
+//   - in prod: use the full HTTPS backend URL to avoid HTTP→HTTPS redirects
+//     that silently convert POST to GET and return a 405
 const API_URL =
-  import.meta.env.VITE_API_URL || '/api/distriforceai';
+  import.meta.env.VITE_API_URL ||
+  (import.meta.env.DEV
+    ? '/api/distriforceai'
+    : 'https://notif-whatsapp.distriforce.shop/distriforceai');
 
 // Fix code blocks that the backend returns without backtick fences
 // e.g.  "php\n$x = 1;\n\n"  →  "```php\n$x = 1;\n```\n\n"
