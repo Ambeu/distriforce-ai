@@ -1,10 +1,15 @@
 import { useState } from 'react';
 import Sidebar from './components/Sidebar';
 import ChatWindow from './components/ChatWindow';
+import LoginPage from './components/LoginPage';
 import { useChatHistory } from './hooks/useChatHistory';
 import { askAI } from './services/api';
 
 export default function App() {
+  const [authenticated, setAuthenticated] = useState(
+    () => sessionStorage.getItem('df_auth') === '1'
+  );
+
   const {
     chats, activeChat, activeChatId,
     setActiveChatId, createChat, addMessage, deleteChat, clearAll
@@ -41,6 +46,10 @@ export default function App() {
       setIsLoading(false);
     }
   };
+
+  if (!authenticated) {
+    return <LoginPage onSuccess={() => setAuthenticated(true)} />;
+  }
 
   return (
     <div className="flex h-screen overflow-hidden bg-dark-900 text-slate-900">
